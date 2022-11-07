@@ -21,6 +21,11 @@ public class UserController {
     private final UserService userService;
     private final Logger logger = LoggerFactory.getLogger("LoggerController 의 로그");
 
+    @GetMapping("/signup")
+    public String signUp() {
+        return "signup";
+    }
+
     /** POST 회원가입
      * @param userForm - email
      * @param userForm - password
@@ -31,6 +36,7 @@ public class UserController {
         User user = new User();
         user.setEmail(userForm.getEmail());
         user.setPassword(userForm.getPassword());
+        user.setName(userForm.getName());
         System.out.println("이메일 비밀번호 가챠!!!");
         userService.save(user);
         return "redirect:/";
