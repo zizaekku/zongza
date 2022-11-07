@@ -2,18 +2,17 @@ package zizeaku.zongza.service;
 
 import org.springframework.stereotype.Service;
 
+import lombok.RequiredArgsConstructor;
+
 import java.util.List;
 
 import zizeaku.zongza.domain.User;
 import zizeaku.zongza.repository.UserRepository;
 
+@RequiredArgsConstructor
 @Service
 public class UserService {
     private final UserRepository userRepository;
-
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
 
     public String save(User user) {
         userRepository.save(user);

@@ -10,17 +10,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import lombok.RequiredArgsConstructor;
 
+
+@RequiredArgsConstructor
 @Controller
 @RequestMapping(value = "/users")
 public class UserController {
 
     private final UserService userService;
     private final Logger logger = LoggerFactory.getLogger("LoggerController 의 로그");
-
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
 
     /** POST 회원가입
      * @param userForm - email

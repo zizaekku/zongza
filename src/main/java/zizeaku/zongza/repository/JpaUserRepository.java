@@ -7,17 +7,15 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
+import lombok.RequiredArgsConstructor;
 import zizeaku.zongza.domain.User;
 
 @Transactional
+@RequiredArgsConstructor
 @Repository
 public class JpaUserRepository implements UserRepository {
 
     private final EntityManager em;
-    
-    public JpaUserRepository(EntityManager em) {
-        this.em = em;
-    }
     
     @Override
     public void save(User user) {
