@@ -58,8 +58,12 @@ public class UserController {
     @PostMapping("/login")
     public String postLogin(User userForm) {
         logger.info("POST login!");
-        userService.login(userForm);
-        return "redirect:/";
+        Boolean resultUser = userService.login(userForm);
+        if (resultUser) {
+            return "redirect:/";
+        } else {
+            return "404";
+        }
     }
 
     @GetMapping("/password")
