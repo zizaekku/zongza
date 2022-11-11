@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>종자목록</title>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>국명</th>
+                        <th>도입학명</th>
+                        <th>도입번호</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="seed:${seeds}">
+                        <td th:text="${seed.id}"></td>
+                        <td th:text="${seed.name}"></td>
+                        <td th:text="${seed.scientificName}"></td>
+                        <td th:text="${seed.introNum}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
