@@ -10,28 +10,34 @@
         <link th:href="@{/css/styles.css}" rel="stylesheet" />
         <script th:src="@{https://use.fontawesome.com/releases/v6.1.0/js/all.js}" crossorigin="anonymous"></script>
     </head>
-    <body class="bg-primary">
+    <body>
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
                     <div class="container">
+                        <div class="login-header"></div>
                         <div class="row justify-content-center">
                             <div class="col-lg-5">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
+                                <div><h3 class="text-center font-weight-light my-4">로그인 (Login)</h3></div>
                                     <div class="card-body">
                                         <form action="/users/login" method="post">
-                                            <div class="form-floating mb-3">
-                                                <input class="form-control" id="inputEmail" type="email" name="email" placeholder="name@example.com" />
-                                                <label for="inputEmail">Email address</label>
+                                            <div>이메일 (Email)</div>
+                                            <div class="mb-3">
+                                                <input class="form-control" id="inputEmail" type="email" name="email" placeholder="연구소 이메일을 입력해 주세요." />
                                             </div>
-                                            <div class="form-floating mb-3">
-                                                <input class="form-control" id="inputPassword" type="password" name="password" placeholder="Password" />
-                                                <label for="inputPassword">Password</label>
+                                            <div>비밀번호 (Password)</div>
+                                            <div class="mb-3">
+                                                <input class="form-control" id="inputPassword" type="password" name="password" placeholder="비밀번호를 입력해 주세요." />
                                             </div>
-                                            <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <a class="small" th:href="@{/users/password}">Forgot Password?</a>
-                                                <button class="btn btn-primary" type="submit">Login</button>
+                                            <div class="mb-5">
+                                                <button class="btn btn-primary" type="submit">로그인 (Login)</button>
+                                            </div>
+                                            <div class="mb-3">
+                                                <button class="btn btn-secondary" th:href="@{/users/password}" type="submit">비밀번호 찾기</button>
+                                            </div>
+                                            <div class="mb-3">
+                                                <button class="btn btn-secondary" type="submit">비밀번호 재설정</button>
                                             </div>
                                         </form>
                                     </div>
@@ -40,20 +46,6 @@
                         </div>
                     </div>
                 </main>
-            </div>
-            <div id="layoutAuthentication_footer">
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid px-4">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2022</div>
-                            <div>
-                                <a th:href="@{#}">Privacy Policy</a>
-                                &middot;
-                                <a th:href="@{#}">Terms &amp; Conditions</a>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
             </div>
         </div>
         <script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js}" crossorigin="anonymous"></script>
