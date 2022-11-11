@@ -1,6 +1,9 @@
 package zizeaku.zongza.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,5 +33,12 @@ public class SeedController {
         seed.setIntroNum(form.getIntroNum());
         seedService.join(seed);
         return "redirect:/seeds/new";
+    }
+
+    @GetMapping("/list")
+    public String list(Model model) {
+        List<Seed> seeds = seedService.findAllSeeds();
+        model.addAttribute("seeds", seeds);
+        return "seeds/seedList";
     }
 }
