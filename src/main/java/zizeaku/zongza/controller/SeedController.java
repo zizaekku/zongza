@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import zizeaku.zongza.domain.Seed;
@@ -47,16 +46,9 @@ public class SeedController {
     @GetMapping("/detail")
     public String paramTest(@RequestParam("seedId") Long seedId, Model model) {
         Seed seed = seedService.findSeed(seedId);
-        System.out.println("여기여기여기");
-        System.out.println(seed);
         model.addAttribute("seedId", seedId);
         model.addAttribute("seed", seed);
         return "seeds/detail";
     }
 
-    // @RequestMapping(value = "/read", method = RequestMethod.GET) // GET 방식으로 페이지 호출
-	//   public void read(@RequestParam("bno")int bno, Model model) throws Exception{
-	// 	  // 인자값은 파라미터 값으로 기본키인 글번호를 기준으로 Model을 사용하여 불러옴
-	// 	 model.addAttribute(seedService.read(bno)); // read 서비스 호출
-	//   }
 }
