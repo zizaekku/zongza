@@ -33,7 +33,7 @@ public class SeedController {
         seed.setScientificName(form.getScientificName());
         seed.setIntroNum(form.getIntroNum());
         seedService.join(seed);
-        return "redirect:/seeds/new";
+        return "redirect:/seeds/list";
     }
 
     @GetMapping("/list")
@@ -44,11 +44,29 @@ public class SeedController {
     }
 
     @GetMapping("/detail")
-    public String paramTest(@RequestParam("seedId") Long seedId, Model model) {
+    public String detail(@RequestParam("seedId") Long seedId, Model model) {
         Seed seed = seedService.findSeed(seedId);
         model.addAttribute("seedId", seedId);
         model.addAttribute("seed", seed);
         return "seeds/detail";
+    }
+
+    @GetMapping("/update")
+    public String update(@RequestParam("seedId") Long seedId, Model model) {
+        Seed seed = seedService.findSeed(seedId);
+        model.addAttribute("seedId", seedId);
+        model.addAttribute("seed", seed);
+        return "seeds/update";
+    }
+
+    @PostMapping("/update")
+    public String updateSeed(@RequestParam("seedId") Long seedId, Model model, SeedForm form) {
+        Seed seed = seedService.findSeed(seedId);
+        seed.setName(form.getName());
+        seed.setScientificName(form.getScientificName());
+        seed.setIntroNum(form.getIntroNum());
+        seedService.join(seed);
+        return "redirect:/seeds/list";
     }
 
 }

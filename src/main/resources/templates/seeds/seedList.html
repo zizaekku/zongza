@@ -18,6 +18,7 @@
                         <th>도입학명</th>
                         <th>도입번호</th>
                         <th>상세페이지</th>
+                        <th>수정하기</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,6 +28,7 @@
                         <td th:text="${seed.scientificName}"></td>
                         <td th:text="${seed.introNum}"></td>
                         <td><a th:href="@{/seeds/detail(seedId=${seed.id})}">바로가기</a></td>
+                        <td><a th:href="@{/seeds/update(seedId=${seed.id})}">수정</a></td>
                     </tr>
                 </tbody>
             </table>
