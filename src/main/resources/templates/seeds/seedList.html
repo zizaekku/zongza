@@ -16,6 +16,7 @@
                         <th>국명</th>
                         <th>도입학명</th>
                         <th>도입번호</th>
+                        <th>상세페이지</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -24,6 +25,7 @@
                         <td th:text="${seed.name}"></td>
                         <td th:text="${seed.scientificName}"></td>
                         <td th:text="${seed.introNum}"></td>
+                        <td><a th:href="@{/seeds/detail(seedId=${seed.id})}">바로가기</a></td>
                     </tr>
                 </tbody>
             </table>
