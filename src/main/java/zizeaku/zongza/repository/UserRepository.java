@@ -1,12 +1,16 @@
 package zizeaku.zongza.repository;
 
 import java.util.List;
-import java.util.Optional;
 
-import org.apache.catalina.User;
+import org.springframework.stereotype.Repository;
 
+import zizeaku.zongza.domain.User;
+
+@Repository
 public interface UserRepository {
+    void save(User user);
     User update(User user);
-    Optional<User> findById(Long id);
+    List<User> findByEmail(String email);
+    User findById(Long id);
     List<User> findAll();
 }
