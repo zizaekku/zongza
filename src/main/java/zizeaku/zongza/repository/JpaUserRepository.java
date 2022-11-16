@@ -1,18 +1,25 @@
 package zizeaku.zongza.repository;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 
-import org.apache.catalina.User;
+import org.springframework.stereotype.Repository;
 
+import lombok.RequiredArgsConstructor;
+import zizeaku.zongza.domain.User;
+
+@Transactional
+@RequiredArgsConstructor
+@Repository
 public class JpaUserRepository implements UserRepository {
 
     private final EntityManager em;
     
-    public JpaUserRepository(EntityManager em) {
-        this.em = em;
+    @Override
+    public void save(User user) {
+        em.persist(user);        
     }
 
     @Override
@@ -22,9 +29,15 @@ public class JpaUserRepository implements UserRepository {
     }
 
     @Override
-    public Optional<User> findById(Long id) {
-        // TODO Auto-generated method stub
-        return Optional.empty();
+    public List<User> findByEmail(String email) {
+        return em.createQuery("select u from User u where u.email = :email", User.class)
+                .setParameter("email", email)
+                .getResultList();
+    }
+
+    @Override
+    public User findById(Long id) {
+        return em.find(User.class, id);
     }
 
     @Override
@@ -32,5 +45,5 @@ public class JpaUserRepository implements UserRepository {
         // TODO Auto-generated method stub
         return null;
     }
-    
+
 }
