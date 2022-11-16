@@ -19,6 +19,10 @@ public class UserService {
 
     private final UserRepository userRepository;
 
+    /** 회원가입
+     * @param user
+     * @return
+     */
     public String save(User user) {
         String enccodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(enccodedPassword);
@@ -26,6 +30,11 @@ public class UserService {
         return "생성 성공";
     }
 
+    
+    /** 로그인
+     * @param user
+     * @return
+     */
     public Boolean login(User user) {
         String email = user.getEmail();
         String formPassword = user.getPassword();

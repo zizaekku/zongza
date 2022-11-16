@@ -51,9 +51,10 @@ public class UserController {
         return "login";
     }
 
+
     /** POST 로그인
-     * 
-     * @return
+     * @param userForm
+     * @return ok -> 홈 / nope -> 404
      */
     @PostMapping("/login")
     public String postLogin(User userForm) {
