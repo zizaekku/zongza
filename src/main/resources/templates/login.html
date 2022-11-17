@@ -33,13 +33,10 @@
                                             <div class="mb-5">
                                                 <button class="btn btn-primary width-100" type="submit">로그인 (Log In)</button>
                                             </div>
-                                            <div class="mb-3">
-                                                <button class="btn btn-secondary" th:href="@{/users/password}" type="submit">비밀번호 찾기</button>
-                                            </div>
-                                            <div class="mb-3">
-                                                <button class="btn btn-secondary" type="submit">비밀번호 재설정</button>
-                                            </div>
                                         </form>
+                                        <div class="mb-3">
+                                            <button class="btn btn-secondary" th:onclick="|location.href='@{/users/password}'|">비밀번호 찾기</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
