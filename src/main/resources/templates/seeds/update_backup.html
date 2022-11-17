@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>종자 수정</title>
+</head>
+<body>
+    <div class="container">
+        <form action="/seeds/update" method="post">
+            <div class="form-group">
+                <label for="name">국명</label>
+                <input type="text" id="name" name="name" th:value="${seed.name}" placeholder="국명을 입력하세요">
+                <br>
+                <label for="scientificName">도입학명</label>
+                <input type="text" id="scientificName" name="scientificName" th:value="${seed.scientificName}" placeholder="도입학명을 입력하세요">
+                <br>
+                <label for="introNum">도입번호</label>
+                <input type="text" id="introNum" name="introNum" th:value="${seed.introNum}" placeholder="도입번호을 입력하세요">
+
+                <input type="hidden" id="seedId" name="seedId" th:value="${seed.id}">
+            </div>
+            <button type="submit">등록</button>
+        </form>
+    </div>
+</body>
+</html>

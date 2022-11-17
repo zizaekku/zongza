@@ -1,26 +1,124 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>종자 생성 폼</title>
-</head>
-<body>
-    <div class="container">
-        <form action="/seeds/new" method="post">
-            <div class="form-group">
-                <label for="name">국명</label>
-                <input type="text" id="name" name="name" placeholder="국명을 입력하세요">
-                <br>
-                <label for="scientificName">도입학명</label>
-                <input type="text" id="scientificName" name="scientificName" placeholder="도입학명을 입력하세요">
-                <br>
-                <label for="introNum">도입번호</label>
-                <input type="text" id="introNum" name="introNum" placeholder="도입번호을 입력하세요">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Zongza</title>
+        <link th:href="@{https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css}" rel="stylesheet" />
+        <link th:href="@{/css/styles.css}" rel="stylesheet" />
+        <script th:src="@{https://use.fontawesome.com/releases/v6.1.0/js/all.js}" crossorigin="anonymous"></script>
+    </head>
+    <body class="sb-nav-fixed">
+        <nav class="sb-topnav navbar navbar-expand navbar-light bg-light">
+            <!-- Navbar Brand-->
+            <a class="navbar-brand ps-3 top-header" th:href="@{/}"></a>
+            <!-- Sidebar Toggle-->
+            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+            <!-- Navbar Search-->
+            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+                <div class="input-group">
+                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+                </div>
+            </form>
+        </nav>
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+                            <a class="nav-link collapsed" th:href="@{#}" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages" style="padding-top: 3rem;">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                Pages
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                                    <a class="nav-link collapsed" th:href="@{#}" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+                                        Authentication
+                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                    </a>
+                                    <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                                        <nav class="sb-sidenav-menu-nested nav">
+                                            <a class="nav-link" th:href="@{/users/login}">Login</a>
+                                            <a class="nav-link" th:href="@{/users/password}">Forgot Password</a>
+                                        </nav>
+                                    </div>
+                                </nav>
+                            </div>
+                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                                    <a class="nav-link collapsed" th:href="@{#}" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+                                        Seeds
+                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                    </a>
+                                    <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                                        <nav class="sb-sidenav-menu-nested nav">
+                                            <a class="nav-link" th:href="@{/seeds/list}">종자 목록</a>
+                                        </nav>
+                                    </div>
+                                </nav>
+                            </div>
+                            <div class="sb-sidenav-menu-heading">Addons</div>
+                            <a class="nav-link" th:href="@{/users/tables}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                Tables
+                            </a>
+                        </div>
+                    </div>
+                </nav>
             </div>
-            <button type="submit">등록</button>
-        </form>
-    </div>
-</body>
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4" style="padding:20px 0;">종자 추가</h1>
+
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <form action="/seeds/new" method="post">
+                                    <div class="form-group">
+                                        <div class="seed-add-div">
+                                            <label for="name">국명</label>
+                                            <input type="text" id="name" name="name" placeholder="국명을 입력하세요">
+                                        </div>
+                                        <div class="seed-add-div">
+                                            <label for="scientificName">도입학명</label>
+                                            <input type="text" id="scientificName" name="scientificName" placeholder="도입학명을 입력하세요">
+                                        </div>
+                                        <div class="seed-add-div">
+                                            <label for="introNum">도입번호</label>
+                                            <input type="text" id="introNum" name="introNum" placeholder="도입번호을 입력하세요">
+                                        </div>
+                                    </div>
+                                    <div class="seed-add-btn-box">
+                                        <button type="submit" class="save-btn">저장</button>
+                                        <a class="cancel-btn" th:href="@{/seeds/list}">취소</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; Your Website 2022</div>
+                            <div>
+                                <a th:href="@{#}">Privacy Policy</a>
+                                &middot;
+                                <a th:href="@{#}">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="../js/scripts.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+        <script src="../js/datatables-simple-demo.js"></script>
+    </body>
 </html>
