@@ -11801,7 +11801,8 @@ body {
 }
 
 .seed-add-div input:focus {
-  outline: 2px solid #DBDBDC;
+  outline: 1px solid #DBDBDC;
+  box-shadow: 1px 1px 15px #DBDBDC;
 }
 
 .seed-add-btn-box {
@@ -11817,6 +11818,14 @@ body {
   padding:5px;
   width:100px;
   display: inline-block;
+}
+
+a[class="save-btn"] {
+  text-decoration: none;
+}
+
+a[class="save-btn"]:hover {
+  color:white;
 }
 
 .cancel-btn {
