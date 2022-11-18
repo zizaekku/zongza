@@ -84,8 +84,8 @@ public class UserController {
      */
     @PostMapping("password")
     public String sendTempPassword(String email) {
-        // TODO 이름 가져오기
-        String name = "지우";
+        User result = userService.isUserExists(email);
+        String name = result.getName();
         MailDto dto = sendMailService.createMailAndChangePassword(email, name);
         sendMailService.mailSend(dto);
         return "login";

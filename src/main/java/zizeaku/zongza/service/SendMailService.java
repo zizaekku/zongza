@@ -55,9 +55,6 @@ public class SendMailService {
         String enccodedPassword = passwordEncoder.encode(str);
         User user = UserService.isUserExists(email);
         Long id = user.getId();
-        System.out.println("비밀번호 변경하는 곳이에요!!!");
-        System.out.println(id);
-        System.out.println(enccodedPassword);
         jpaUserRepository.updatePassword(id, enccodedPassword);
     }
 

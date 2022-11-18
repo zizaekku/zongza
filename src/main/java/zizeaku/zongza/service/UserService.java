@@ -65,6 +65,12 @@ public class UserService {
         }
     }
 
+    
+    /** 비밀번호가 일치하는지 확인
+     * @param result
+     * @param formPassword
+     * @return
+     */
     private Boolean isPasswordCorr(User result, String formPassword) {
         String jjinPassword = result.getPassword();
         System.out.println(jjinPassword);

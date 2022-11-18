@@ -27,7 +27,6 @@ public class JpaUserRepository implements UserRepository {
     // 비밀번호 변경
     @Override
     public void updatePassword(Long id, String password) {
-        System.out.println("비밀번호 변경 JPA USER REPOSITORY");
         em.createQuery("update User set password = :password where id = :id")
             .setParameter("password", password)
             .setParameter("id", id)
@@ -51,8 +50,8 @@ public class JpaUserRepository implements UserRepository {
 
     @Override
     public List<User> findAll() {
-        // TODO Auto-generated method stub
-        return null;
+        return em.createQuery("select * from User u", User.class)
+            .getResultList();
     }
 
 }
