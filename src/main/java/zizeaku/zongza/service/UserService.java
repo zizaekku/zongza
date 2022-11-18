@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 
-import java.util.List;
+import java.util.Optional;
 
 import zizeaku.zongza.domain.User;
 import zizeaku.zongza.repository.UserRepository;
@@ -33,7 +33,7 @@ public class UserService {
     
     /** 로그인
      * @param user
-     * @return
+     * @return true / false
      */
     public Boolean login(User user) {
         String email = user.getEmail();
@@ -50,14 +50,19 @@ public class UserService {
 
     
     /** 유저 이메일로 존재하는지 확인하는 함수
-     * @param user
+     * @param String email
+     * @return user / error
      */
-    private User isUserExists(String email) {
-        List<User> findUsers = userRepository.findByEmail(email);
-        if(findUsers.isEmpty()) {
+    public User isUserExists(String email) {
+        Optional<User> result = userRepository.findByEmail(email);
+        System.out.println("이메일 존재?!?!?");
+        System.out.println(result);
+        if (result.isPresent()) {
+            User user = result.get();
+            return user;
+        } else {
             throw new IllegalStateException("존재하지 않는 회원입니다.");
         }
-        return findUsers.get(0);
     }
 
     private Boolean isPasswordCorr(User result, String formPassword) {

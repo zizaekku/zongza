@@ -1,7 +1,12 @@
 package zizeaku.zongza.controller;
 
 import zizeaku.zongza.domain.User;
+import zizeaku.zongza.service.SendMailService;
 import zizeaku.zongza.service.UserService;
+import zizeaku.zongza.repository.MailDto;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +24,7 @@ import lombok.RequiredArgsConstructor;
 public class UserController {
 
     private final UserService userService;
+    private final SendMailService sendMailService;
     private final Logger logger = LoggerFactory.getLogger("LoggerController 의 로그");
 
     @GetMapping("/signup")
@@ -71,6 +77,20 @@ public class UserController {
     public String password() {
         return "password";
     }
+
+    /** 등록된 이메일로 임시비밀번호를 발송하고 발송된 임시비밀번호로 사용자의 pw를 변경하는 컨트롤러
+     * @param email
+     * @return
+     */
+    @PostMapping("password")
+    public String sendTempPassword(String email) {
+        // TODO 이름 가져오기
+        String name = "지우";
+        MailDto dto = sendMailService.createMailAndChangePassword(email, name);
+        sendMailService.mailSend(dto);
+        return "login";
+    }
+
 
     @GetMapping("/tables")
     public String tables() {

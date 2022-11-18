@@ -1,5 +1,6 @@
 package zizeaku.zongza.repository;
 
+import java.util.Optional;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -17,22 +18,30 @@ public class JpaUserRepository implements UserRepository {
 
     private final EntityManager em;
     
+    // 회원가입
     @Override
     public void save(User user) {
         em.persist(user);        
     }
 
+    // 비밀번호 변경
     @Override
-    public User update(User user) {
-        // TODO Auto-generated method stub
-        return null;
+    public void updatePassword(Long id, String password) {
+        System.out.println("비밀번호 변경 JPA USER REPOSITORY");
+        em.createQuery("update User set password = :password where id = :id")
+            .setParameter("password", password)
+            .setParameter("id", id)
+            .executeUpdate();
+        em.clear();
     }
 
     @Override
-    public List<User> findByEmail(String email) {
-        return em.createQuery("select u from User u where u.email = :email", User.class)
+    public Optional<User> findByEmail(String email) {
+        List<User> result = em.createQuery("select u from User u where u.email = :email", User.class)
                 .setParameter("email", email)
                 .getResultList();
+
+        return result.stream().findAny();
     }
 
     @Override
