@@ -69,4 +69,10 @@ public class SeedController {
         return "redirect:/seeds/list";
     }
 
+    @GetMapping("/delete")
+    public String delete(@RequestParam("seedId") Long seedId) {
+        seedService.deleteSeed(seedId);
+        return "redirect:/seeds/list";
+    }
+
 }
