@@ -1,6 +1,6 @@
 package zizeaku.zongza.controller;
 
-import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,34 +38,34 @@ public class SeedController {
 
     @GetMapping("/list")
     public String list(Model model) {
-        List<Seed> seeds = seedService.findAllSeeds();
+        Iterable<Seed> seeds = seedService.findAllSeeds();
         model.addAttribute("seeds", seeds);
         return "seeds/seedList";
     }
 
     @GetMapping("/detail")
     public String detail(@RequestParam("seedId") Long seedId, Model model) {
-        Seed seed = seedService.findSeed(seedId);
+        Optional<Seed> seed = seedService.findSeed(seedId);
         model.addAttribute("seedId", seedId);
-        model.addAttribute("seed", seed);
+        model.addAttribute("seed", seed.get());
         return "seeds/detail";
     }
 
     @GetMapping("/update")
     public String update(@RequestParam("seedId") Long seedId, Model model) {
-        Seed seed = seedService.findSeed(seedId);
+        Optional<Seed> seed = seedService.findSeed(seedId);
         model.addAttribute("seedId", seedId);
-        model.addAttribute("seed", seed);
+        model.addAttribute("seed", seed.get());
         return "seeds/update";
     }
 
     @PostMapping("/update")
     public String updateSeed(@RequestParam("seedId") Long seedId, Model model, SeedForm form) {
-        Seed seed = seedService.findSeed(seedId);
-        seed.setName(form.getName());
-        seed.setScientificName(form.getScientificName());
-        seed.setIntroNum(form.getIntroNum());
-        seedService.join(seed);
+        Optional<Seed> seed = seedService.findSeed(seedId);
+        seed.get().setName(form.getName());
+        seed.get().setScientificName(form.getScientificName());
+        seed.get().setIntroNum(form.getIntroNum());
+        seedService.join(seed.get());
         return "redirect:/seeds/list";
     }
 

@@ -1,6 +1,6 @@
 package zizeaku.zongza.service;
 
-import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -23,12 +23,17 @@ public class SeedService {
     }
 
     // 종자 전체 조회
-    public List<Seed> findAllSeeds() {
+    public Iterable<Seed> findAllSeeds() {
         return seedRepository.findAll();
     }
 
     // 종자 조회
-    public Seed findSeed(Long seedId) {
+    public Optional<Seed> findSeed(Long seedId) {
         return seedRepository.findById(seedId);
     }
+    
+    public void deleteSeed(Long seedId) {
+        seedRepository.deleteById(seedId);
+    }
 }
+
