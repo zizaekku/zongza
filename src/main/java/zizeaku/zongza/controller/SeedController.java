@@ -9,16 +9,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import zizeaku.zongza.domain.Generic;
 import zizeaku.zongza.domain.Seed;
+import zizeaku.zongza.service.GenericService;
 import zizeaku.zongza.service.SeedService;
 
 @Controller
 @RequestMapping(value = "/seeds")
 public class SeedController {
     private final SeedService seedService;
+    private final GenericService genericService;
     
-    public SeedController(SeedService seedService) {
+    public SeedController(SeedService seedService, GenericService genericService) {
         this.seedService = seedService;
+        this.genericService = genericService;
     }
 
     @GetMapping("/new")
@@ -28,10 +32,17 @@ public class SeedController {
 
     @PostMapping("/new")
     public String create(SeedForm form) {
+        System.out.println(form);
+        System.out.println(form.getGeneric());
+        Optional<Generic> generic = genericService.findGeneric(Long.parseLong(form.getGeneric()));
+        System.out.println("===========");
+        System.out.println(generic);
         Seed seed = new Seed();
         seed.setName(form.getName());
         seed.setScientificName(form.getScientificName());
         seed.setIntroNum(form.getIntroNum());
+        // seed.setGeneric(form.getGeneric());
+        seed.setGeneric(generic.get());
         seedService.join(seed);
         return "redirect:/seeds/list";
     }
@@ -40,6 +51,7 @@ public class SeedController {
     public String list(Model model) {
         Iterable<Seed> seeds = seedService.findAllSeeds();
         model.addAttribute("seeds", seeds);
+        // System.out.println(seeds.getClass().getField(null)));
         return "seeds/seedList";
     }
 

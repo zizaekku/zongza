@@ -5,8 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,23 +20,16 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Seed {
+public class Generic {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name = "id")
     private Long id;
 
-    @Column(nullable = false, length=30, name="name")
-    private String name;
+    @Column(nullable = false, length=30, name="kor_nm")
+    private String korNm;
 
-    @Column(nullable = false, length=30, name="scientific_name")
-    private String scientificName;
-
-    @Column(nullable = false, length=30, name="intro_num")
-    private String introNum;
-
-    @ManyToOne
-    @JoinColumn(name="generic_id")
-    private Generic generic;
+    @Column(nullable = false, length=30, name="eng_nm")
+    private String engNm;
 }

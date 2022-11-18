@@ -90,6 +90,7 @@
                                             <th>국명</th>
                                             <th>도입학명</th>
                                             <th>도입번호</th>
+                                            <th>속명</th>
                                             <th>수정하기</th>
                                             <th>삭제하기</th>
                                         </tr>
@@ -100,6 +101,7 @@
                                             <td th:text="${seed.name}"></td>
                                             <td th:text="${seed.scientificName}"></td>
                                             <td th:text="${seed.introNum}"></td>
+                                            <td th:text="${seed.generic}"></td>
                                             <td><a th:href="@{/seeds/update(seedId=${seed.id})}"><img src="../img/edit-btn.png" alt="edit-btn"></a></td>
                                             <td><a th:href="@{/seeds/delete(seedId=${seed.id})}"><img src="../img/delete-btn.png" alt="delete-btn"></a></td>
                                         </tr>

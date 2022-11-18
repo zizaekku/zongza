@@ -92,6 +92,10 @@
                                             <label for="introNum">도입번호</label>
                                             <input type="text" id="introNum" name="introNum" th:value="${seed.introNum}" placeholder="도입번호을 입력하세요" readonly>
                                         </div>
+                                        <div class="seed-add-div">
+                                            <label for="generic">속명</label>
+                                            <span th:text="|${seed.generic.korNm}(${seed.generic.engNm})|"></span>
+                                        </div>
                                     </div>
                                     <div class="seed-add-btn-box">
                                         <!-- <input type="hidden" id="seedId" name="seedId" th:value="${seed.id}"> -->

@@ -9,4 +9,5 @@ public class SeedForm {
     private String name;
     private String scientificName;
     private String introNum;
+    private String generic;
 }
