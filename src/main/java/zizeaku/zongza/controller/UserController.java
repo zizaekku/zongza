@@ -5,9 +5,6 @@ import zizeaku.zongza.service.SendMailService;
 import zizeaku.zongza.service.UserService;
 import zizeaku.zongza.repository.MailDto;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -25,10 +22,11 @@ public class UserController {
 
     private final UserService userService;
     private final SendMailService sendMailService;
-    private final Logger logger = LoggerFactory.getLogger("LoggerController 의 로그");
+    private final Logger logger = LoggerFactory.getLogger("UserController 의 로그");
 
     @GetMapping("/signup")
     public String signUp() {
+        logger.info("GET signup!");
         return "signup";
     }
 
@@ -43,8 +41,8 @@ public class UserController {
         user.setEmail(userForm.getEmail());
         user.setPassword(userForm.getPassword());
         user.setName(userForm.getName());
-        System.out.println("이메일 비밀번호 가챠!!!");
         userService.save(user);
+        logger.info("회원가입 완료!");
         return "redirect:/";
     }
 
@@ -75,6 +73,7 @@ public class UserController {
 
     @GetMapping("/password")
     public String password() {
+        logger.info("GET 비밀번호 찾기!");
         return "password";
     }
 
@@ -85,9 +84,15 @@ public class UserController {
     @PostMapping("password")
     public String sendTempPassword(String email) {
         User result = userService.isUserExists(email);
+        // result가 null이라면 오류 페이지로 보내버리기
+        if (result == null) {
+            return "404";
+        }
+        Long id = result.getId();
         String name = result.getName();
-        MailDto dto = sendMailService.createMailAndChangePassword(email, name);
+        MailDto dto = sendMailService.createMailAndChangePassword(id, email, name);
         sendMailService.mailSend(dto);
+        logger.info("POST 비밀번호 변경 완료!");
         return "login";
     }
 

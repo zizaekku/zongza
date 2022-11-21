@@ -14,8 +14,6 @@
 
 package zizeaku.zongza.service;
 
-import java.util.Optional;
-
 import zizeaku.zongza.domain.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,23 +36,20 @@ public class SendMailService {
     private JavaMailSender mailSender;
     private static final String FROM_ADDRESS = "ninewatt22@gmail.com";
     private final JpaUserRepository jpaUserRepository;
-    private final UserService UserService;
     
-    public MailDto createMailAndChangePassword(String email, String name){
+    public MailDto createMailAndChangePassword(Long id, String email, String name){
         String str = getTempPassword();
         MailDto dto = new MailDto();
         dto.setEmail(email);
-        dto.setTitle(name + "님의 종자 플랫폼 임시비밀번호 안내 이메일 입니다.");
+        dto.setTitle("한국수목원정원관리원 종자 플랫폼 임시비밀번호 안내 이메일 입니다.");
         dto.setMessage("안녕하세요. 종자 플랫폼 임시비밀번호 안내 관련 이메일 입니다." + "[" + name + "]" +"님의 임시 비밀번호는 "
         + str + " 입니다.");
-        updatePassword(str, email);
+        updatePassword(id, str, email);
         return dto;
     }
 
-    public void updatePassword(String str, String email){
+    public void updatePassword(Long id, String str, String email){
         String enccodedPassword = passwordEncoder.encode(str);
-        User user = UserService.isUserExists(email);
-        Long id = user.getId();
         jpaUserRepository.updatePassword(id, enccodedPassword);
     }
 

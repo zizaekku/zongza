@@ -39,6 +39,10 @@ public class UserService {
         String email = user.getEmail();
         String formPassword = user.getPassword();
         User result = isUserExists(email);
+        if (result == null) {
+            System.out.println("이메일 없음.");
+            return false;
+        }
         if (isPasswordCorr(result, formPassword)) {
             System.out.println("리턴 찐");
             return true;
@@ -61,7 +65,7 @@ public class UserService {
             User user = result.get();
             return user;
         } else {
-            throw new IllegalStateException("존재하지 않는 회원입니다.");
+            return null;
         }
     }
 
