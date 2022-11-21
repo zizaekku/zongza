@@ -55,22 +55,25 @@ public class UserController {
         return "login";
     }
 
-
     /** POST 로그인
      * @param userForm
      * @return ok -> 홈 / nope -> 404
      */
     @PostMapping("/login")
     public String postLogin(User userForm) {
-        logger.info("POST login!");
         Boolean resultUser = userService.login(userForm);
         if (resultUser) {
+            logger.info("POST login 성공!");
             return "redirect:/";
         } else {
+            logger.error("POST login 실패!");
             return "404";
         }
     }
 
+    /** GET 비밀번호 찾기 화면
+     * @return password.html
+     */
     @GetMapping("/password")
     public String password() {
         logger.info("GET 비밀번호 찾기!");
@@ -86,6 +89,7 @@ public class UserController {
         User result = userService.isUserExists(email);
         // result가 null이라면 오류 페이지로 보내버리기
         if (result == null) {
+            logger.error("POST 비밀번호 변경 실패!");
             return "404";
         }
         Long id = result.getId();
