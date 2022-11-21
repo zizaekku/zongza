@@ -14,8 +14,6 @@
 
 package zizeaku.zongza.service;
 
-import zizeaku.zongza.domain.User;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -43,7 +41,7 @@ public class SendMailService {
         dto.setEmail(email);
         dto.setTitle("한국수목원정원관리원 종자 플랫폼 임시비밀번호 안내 이메일 입니다.");
         dto.setMessage("안녕하세요. 종자 플랫폼 임시비밀번호 안내 관련 이메일 입니다." + "[" + name + "]" +"님의 임시 비밀번호는 "
-        + str + " 입니다.");
+        + str + "입니다.");
         updatePassword(id, str, email);
         return dto;
     }
