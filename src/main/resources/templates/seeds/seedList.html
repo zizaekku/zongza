@@ -101,7 +101,12 @@
                                             <td th:text="${seed.name}"></td>
                                             <td th:text="${seed.scientificName}"></td>
                                             <td th:text="${seed.introNum}"></td>
-                                            <td th:text="${seed.generic}"></td>
+                                            <td>
+                                                <span th:each="s:${#strings.listSplit(seed.generic,',')}">
+                                                    <span th:text="${#strings.substringAfter(s, 'korNm=')}"></span>
+                                                    <span th:text="|(${#strings.substringAfter(s, 'engNm=')}|" th:if="${#strings.substringAfter(s, 'engNm=') != null}"></span>
+                                                </span>
+                                            </td>
                                             <td><a th:href="@{/seeds/update(seedId=${seed.id})}"><img src="../img/edit-btn.png" alt="edit-btn"></a></td>
                                             <td><a th:href="@{/seeds/delete(seedId=${seed.id})}"><img src="../img/delete-btn.png" alt="delete-btn"></a></td>
                                         </tr>

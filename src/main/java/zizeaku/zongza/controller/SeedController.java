@@ -1,5 +1,6 @@
 package zizeaku.zongza.controller;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 import org.springframework.stereotype.Controller;
@@ -51,7 +52,6 @@ public class SeedController {
     public String list(Model model) {
         Iterable<Seed> seeds = seedService.findAllSeeds();
         model.addAttribute("seeds", seeds);
-        // System.out.println(seeds.getClass().getField(null)));
         return "seeds/seedList";
     }
 
