@@ -53,6 +53,10 @@ public class SeedController {
         // seed.setGeneric(form.getGeneric());
         seed.setGeneric(generic.get());
         seed.setFamily(family.get());
+        seed.setPlace(form.getPlace());
+        seed.setLength(form.getLength());
+        seed.setWidth(form.getWidth());
+        seed.setNote(form.getNote());
         seedService.join(seed);
         return "redirect:/seeds/list";
     }
@@ -90,12 +94,17 @@ public class SeedController {
         seed.get().setName(form.getName());
         seed.get().setScientificName(form.getScientificName());
         seed.get().setIntroNum(form.getIntroNum());
-
+        
         Optional<Generic> generic = genericService.findGeneric(Long.parseLong(form.getGeneric()));
         seed.get().setGeneric(generic.get());
-
+        
         Optional<Family> family = familyService.findFamily(Long.parseLong(form.getFamily()));
         seed.get().setFamily(family.get());
+        
+        seed.get().setPlace(form.getPlace());
+        seed.get().setLength(form.getLength());
+        seed.get().setWidth(form.getWidth());
+        seed.get().setNote(form.getNote());
 
         seedService.join(seed.get());
         return "redirect:/seeds/list";

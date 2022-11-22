@@ -37,12 +37,25 @@ public class Seed {
 
     @Column(nullable = false, length=30, name="intro_num")
     private String introNum;
-
+    
     @ManyToOne
     @JoinColumn(name="generic_id")
     private Generic generic;
-
+    
     @ManyToOne
     @JoinColumn(name="family_id")
     private Family family;
+    
+    @Column(nullable = false, name="place")
+    private String place;
+
+    @Column(nullable = false, name="length")
+    private Double length;
+
+    @Column(nullable = false, name="width")
+    private Double width;
+
+    @Column(nullable = false, name="note")
+    private String note;
+
 }

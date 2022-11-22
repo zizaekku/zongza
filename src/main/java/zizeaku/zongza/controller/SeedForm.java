@@ -11,4 +11,8 @@ public class SeedForm {
     private String introNum;
     private String generic;
     private String family;
+    private String place;
+    private Double length;
+    private Double width;
+    private String note;
 }

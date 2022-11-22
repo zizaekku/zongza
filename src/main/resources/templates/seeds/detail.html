@@ -100,6 +100,22 @@
                                             <label for="generic">속명</label>
                                             <input type="text" id="generic" name="generic" th:value="|${seed.generic.korNm} (${seed.generic.engNm})|" readonly>
                                         </div>
+                                        <div class="seed-add-div">
+                                            <label for="place">채집장소</label>
+                                            <input type="text" id="place" name="place" th:value="${seed.place}" placeholder="채집장소를 입력하세요" readonly>
+                                        </div>
+                                        <div class="seed-add-div">
+                                            <label for="length">종자길이</label>
+                                            <input type="number" step="0.01" id="length" name="length" th:value="${seed.length}" placeholder="종자길이를 입력하세요" readonly>
+                                        </div>
+                                        <div class="seed-add-div">
+                                            <label for="width">종자너비</label>
+                                            <input type="number" step="0.01" id="width" name="width" th:value="${seed.width}" placeholder="종자너비를 입력하세요" readonly>
+                                        </div>
+                                        <div class="seed-add-div">
+                                            <label for="note">비고</label>
+                                            <input type="text" id="note" name="note" th:value="${seed.note}" placeholder="비고를 입력하세요" readonly>
+                                        </div>
                                     </div>
                                     <div class="seed-add-btn-box">
                                         <a th:href="@{/seeds/update(seedId=${seed.id})}" class="save-btn">수정</a>
