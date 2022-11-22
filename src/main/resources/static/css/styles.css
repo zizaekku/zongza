@@ -11740,11 +11740,11 @@ body {
 }
 
 /* Custom CSS */
-.login-backgr ound {
+.login-background {
   background-image: url("../img/login-background.png");
   background-position: center;
   background-repeat: no-repeat;
-
+  background-size: cover;
 }
 
 .login-header {
@@ -11757,6 +11757,10 @@ body {
 
 .font-bold {
   font-family: 'NanumSquare_acB';
+}
+
+font-size-36 {
+  font-size: 36px;;
 }
 
 .width-100 {
