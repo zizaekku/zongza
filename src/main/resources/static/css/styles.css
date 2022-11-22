@@ -11792,7 +11792,7 @@ body {
   padding-right:20px;
 }
 
-.seed-add-div input, .select-box {
+.seed-add-div input {
   width:300px;
   height:36px;
   border-radius: 8px;
@@ -11842,4 +11842,12 @@ a[class="save-btn"]:hover {
 
 .cancel-btn:hover {
   color:black;
+}
+
+.select-box {
+  width:300px;
+  height:36px;
+  border-radius: 8px;
+  border: 1px solid #DBDBDC;
+  padding-left: 6px;
 }

@@ -80,6 +80,10 @@ public class SeedController {
         seed.get().setName(form.getName());
         seed.get().setScientificName(form.getScientificName());
         seed.get().setIntroNum(form.getIntroNum());
+
+        Optional<Generic> generic = genericService.findGeneric(Long.parseLong(form.getGeneric()));
+        seed.get().setGeneric(generic.get());
+
         seedService.join(seed.get());
         return "redirect:/seeds/list";
     }

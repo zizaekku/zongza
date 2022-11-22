@@ -94,14 +94,10 @@
                                         </div>
                                         <div class="seed-add-div">
                                             <label for="generic">속명</label>
-                                            <span th:text="|${seed.generic.korNm}(${seed.generic.engNm})|"></span>
+                                            <input type="text" id="generic" name="generic" th:value="|${seed.generic.korNm} (${seed.generic.engNm})|" readonly>
                                         </div>
                                     </div>
                                     <div class="seed-add-btn-box">
-                                        <!-- <input type="hidden" id="seedId" name="seedId" th:value="${seed.id}"> -->
-                                        <!-- <button type="submit" class="save-btn">저장</button>
-                                        <a class="cancel-btn" th:href="@{/seeds/list}">취소</a> -->
-
                                         <a th:href="@{/seeds/update(seedId=${seed.id})}" class="save-btn">수정</a>
                                         <a th:href="@{/seeds/delete(seedId=${seed.id})}" class="cancel-btn">삭제</a>
                                     </div>
