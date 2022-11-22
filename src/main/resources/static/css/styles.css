@@ -76,7 +76,7 @@
 }
 
 @font-face {
-  font-family: 'NanumSquare_acL';
+  font-family: 'NanumSquare_acEB';
   src: url('../fonts/NanumSquare_acEB.ttf') format('truetype');
 }
 
@@ -86,7 +86,7 @@
 }
 
 @font-face {
-  font-family: 'NanumSquare_acL';
+  font-family: 'NanumSquare_acR';
   src: url('../fonts/NanumSquare_acR.ttf') format('truetype');
 }
 
@@ -11801,4 +11801,10 @@ font-size-36 {
   border: 2px solid;
   background-color: white;
   overflow: auto;	
+}
+
+login-font {
+  font-family: 'NanumSquare_acL';
+  color: #838181;
+  font-size: 14px;
 }
