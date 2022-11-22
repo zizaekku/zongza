@@ -1,6 +1,5 @@
 package zizeaku.zongza.controller;
 
-import java.util.ArrayList;
 import java.util.Optional;
 
 import org.springframework.stereotype.Controller;
@@ -27,7 +26,9 @@ public class SeedController {
     }
 
     @GetMapping("/new")
-    public String createForm() {
+    public String createForm(Model model) {
+        Iterable<Generic> generics = genericService.findAllGenerics();
+        model.addAttribute("generics", generics);
         return "seeds/createSeedForm";
     }
 
@@ -66,6 +67,8 @@ public class SeedController {
     @GetMapping("/update")
     public String update(@RequestParam("seedId") Long seedId, Model model) {
         Optional<Seed> seed = seedService.findSeed(seedId);
+        Iterable<Generic> generics = genericService.findAllGenerics();
+        model.addAttribute("generics", generics);
         model.addAttribute("seedId", seedId);
         model.addAttribute("seed", seed.get());
         return "seeds/update";
