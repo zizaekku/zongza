@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import zizeaku.zongza.domain.Family;
 import zizeaku.zongza.domain.Generic;
 import zizeaku.zongza.domain.Seed;
+import zizeaku.zongza.service.FamilyService;
 import zizeaku.zongza.service.GenericService;
 import zizeaku.zongza.service.SeedService;
 
@@ -19,16 +21,20 @@ import zizeaku.zongza.service.SeedService;
 public class SeedController {
     private final SeedService seedService;
     private final GenericService genericService;
+    private final FamilyService familyService;
     
-    public SeedController(SeedService seedService, GenericService genericService) {
+    public SeedController(SeedService seedService, GenericService genericService, FamilyService familyService) {
         this.seedService = seedService;
         this.genericService = genericService;
+        this.familyService = familyService;
     }
 
     @GetMapping("/new")
     public String createForm(Model model) {
         Iterable<Generic> generics = genericService.findAllGenerics();
+        Iterable<Family> familys = familyService.findAllFamilys();
         model.addAttribute("generics", generics);
+        model.addAttribute("familys", familys);
         return "seeds/createSeedForm";
     }
 
@@ -37,6 +43,7 @@ public class SeedController {
         System.out.println(form);
         System.out.println(form.getGeneric());
         Optional<Generic> generic = genericService.findGeneric(Long.parseLong(form.getGeneric()));
+        Optional<Family> family = familyService.findFamily(Long.parseLong(form.getFamily()));
         System.out.println("===========");
         System.out.println(generic);
         Seed seed = new Seed();
@@ -45,6 +52,7 @@ public class SeedController {
         seed.setIntroNum(form.getIntroNum());
         // seed.setGeneric(form.getGeneric());
         seed.setGeneric(generic.get());
+        seed.setFamily(family.get());
         seedService.join(seed);
         return "redirect:/seeds/list";
     }
@@ -68,7 +76,9 @@ public class SeedController {
     public String update(@RequestParam("seedId") Long seedId, Model model) {
         Optional<Seed> seed = seedService.findSeed(seedId);
         Iterable<Generic> generics = genericService.findAllGenerics();
+        Iterable<Family> familys = familyService.findAllFamilys();
         model.addAttribute("generics", generics);
+        model.addAttribute("familys", familys);
         model.addAttribute("seedId", seedId);
         model.addAttribute("seed", seed.get());
         return "seeds/update";
@@ -83,6 +93,9 @@ public class SeedController {
 
         Optional<Generic> generic = genericService.findGeneric(Long.parseLong(form.getGeneric()));
         seed.get().setGeneric(generic.get());
+
+        Optional<Family> family = familyService.findFamily(Long.parseLong(form.getFamily()));
+        seed.get().setFamily(family.get());
 
         seedService.join(seed.get());
         return "redirect:/seeds/list";

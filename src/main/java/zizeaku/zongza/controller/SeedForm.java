@@ -10,4 +10,5 @@ public class SeedForm {
     private String scientificName;
     private String introNum;
     private String generic;
+    private String family;
 }

@@ -93,6 +93,14 @@
                                             <input type="text" id="introNum" name="introNum" placeholder="도입번호을 입력하세요">
                                         </div>
                                         <div class="seed-add-div">
+                                            <label for="family">과명</label>
+                                            <select id="family" name="family" class="select-box">
+                                                <span th:each="family:${familys}">
+                                                    <option th:value="${family.id}" th:text="|${family.korNm} (${family.engNm})|"></option>
+                                                </span>
+                                            </select>
+                                        </div>
+                                        <div class="seed-add-div">
                                             <label for="generic">속명</label>
                                             <select id="generic" name="generic" class="select-box">
                                                 <span th:each="generic:${generics}">

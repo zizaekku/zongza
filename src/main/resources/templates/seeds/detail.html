@@ -93,6 +93,10 @@
                                             <input type="text" id="introNum" name="introNum" th:value="${seed.introNum}" placeholder="도입번호을 입력하세요" readonly>
                                         </div>
                                         <div class="seed-add-div">
+                                            <label for="family">과명</label>
+                                            <input type="text" id="family" name="family" th:value="|${seed.family.korNm} (${seed.family.engNm})|" readonly>
+                                        </div>
+                                        <div class="seed-add-div">
                                             <label for="generic">속명</label>
                                             <input type="text" id="generic" name="generic" th:value="|${seed.generic.korNm} (${seed.generic.engNm})|" readonly>
                                         </div>

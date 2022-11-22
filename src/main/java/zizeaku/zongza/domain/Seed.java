@@ -32,7 +32,7 @@ public class Seed {
     @Column(nullable = false, length=30, name="name")
     private String name;
 
-    @Column(nullable = false, length=30, name="scientific_name")
+    @Column(nullable = false, length=200, name="scientific_name")
     private String scientificName;
 
     @Column(nullable = false, length=30, name="intro_num")
@@ -41,4 +41,8 @@ public class Seed {
     @ManyToOne
     @JoinColumn(name="generic_id")
     private Generic generic;
+
+    @ManyToOne
+    @JoinColumn(name="family_id")
+    private Family family;
 }
