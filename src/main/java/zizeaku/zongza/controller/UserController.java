@@ -37,11 +37,7 @@ public class UserController {
      */
     @PostMapping("/signup")
     public String userLogin(User userForm) {
-        User user = new User();
-        user.setEmail(userForm.getEmail());
-        user.setPassword(userForm.getPassword());
-        user.setName(userForm.getName());
-        userService.save(user);
+        userService.save(userForm);
         logger.info("회원가입 완료!");
         return "redirect:/";
     }
