@@ -1,5 +1,9 @@
 package zizeaku.zongza.controller;
 
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +15,8 @@ public class SeedForm {
     private String introNum;
     private String generic;
     private String family;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date date;
     private String place;
     private Double length;
     private Double width;

@@ -1,5 +1,7 @@
 package zizeaku.zongza.domain;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -45,6 +49,10 @@ public class Seed {
     @ManyToOne
     @JoinColumn(name="family_id")
     private Family family;
+    
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Column(nullable = false, name="date")
+    private Date date;
     
     @Column(nullable = false, name="place")
     private String place;

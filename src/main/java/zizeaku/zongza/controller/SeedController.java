@@ -40,8 +40,10 @@ public class SeedController {
 
     @PostMapping("/new")
     public String create(SeedForm form) {
+        System.out.println("----------------------------------------------");
         System.out.println(form);
         System.out.println(form.getGeneric());
+        System.out.println(form.getDate());
         Optional<Generic> generic = genericService.findGeneric(Long.parseLong(form.getGeneric()));
         Optional<Family> family = familyService.findFamily(Long.parseLong(form.getFamily()));
         System.out.println("===========");
@@ -53,6 +55,7 @@ public class SeedController {
         // seed.setGeneric(form.getGeneric());
         seed.setGeneric(generic.get());
         seed.setFamily(family.get());
+        seed.setDate(form.getDate());
         seed.setPlace(form.getPlace());
         seed.setLength(form.getLength());
         seed.setWidth(form.getWidth());
@@ -73,6 +76,7 @@ public class SeedController {
         Optional<Seed> seed = seedService.findSeed(seedId);
         model.addAttribute("seedId", seedId);
         model.addAttribute("seed", seed.get());
+        System.out.println(seed.get().getDate());
         return "seeds/detail";
     }
 
@@ -101,6 +105,7 @@ public class SeedController {
         Optional<Family> family = familyService.findFamily(Long.parseLong(form.getFamily()));
         seed.get().setFamily(family.get());
         
+        seed.get().setDate(form.getDate());
         seed.get().setPlace(form.getPlace());
         seed.get().setLength(form.getLength());
         seed.get().setWidth(form.getWidth());

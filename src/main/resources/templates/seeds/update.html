@@ -111,6 +111,10 @@
                                             </select>
                                         </div>
                                         <div class="seed-add-div">
+                                            <label for="date">채집날짜</label>
+                                            <input type="date" id="date" name="date" th:value="${seed.date}" th:field="${seed.date}">
+                                        </div>
+                                        <div class="seed-add-div">
                                             <label for="place">채집장소</label>
                                             <input type="text" id="place" name="place" th:value="${seed.place}" placeholder="채집장소를 입력하세요">
                                         </div>
