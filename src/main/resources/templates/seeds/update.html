@@ -74,29 +74,30 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4" style="padding:20px 0;">종자 추가</h1>
+                        <h1 class="mt-4" style="padding:20px 0;">종자 수정</h1>
 
                         <div class="card mb-4">
                             <div class="card-body">
-                                <form action="/seeds/new" method="post">
+                                <form action="/seeds/update" method="post">
                                     <div class="form-group">
                                         <div class="seed-add-div">
                                             <label for="name">국명</label>
-                                            <input type="text" id="name" name="name" placeholder="국명을 입력하세요">
+                                            <input type="text" id="name" name="name" th:value="${seed.name}" placeholder="국명을 입력하세요">
                                         </div>
                                         <div class="seed-add-div">
                                             <label for="scientificName">도입학명</label>
-                                            <input type="text" id="scientificName" name="scientificName" placeholder="도입학명을 입력하세요">
+                                            <input type="text" id="scientificName" name="scientificName" th:value="${seed.scientificName}" placeholder="도입학명을 입력하세요">
                                         </div>
                                         <div class="seed-add-div">
                                             <label for="introNum">도입번호</label>
-                                            <input type="text" id="introNum" name="introNum" placeholder="도입번호를 입력하세요">
+                                            <input type="text" id="introNum" name="introNum" th:value="${seed.introNum}" placeholder="도입번호를 입력하세요">
                                         </div>
                                         <div class="seed-add-div">
                                             <label for="family">과명</label>
                                             <select id="family" name="family" class="select-box">
                                                 <span th:each="family:${familys}">
-                                                    <option th:value="${family.id}" th:text="|${family.korNm} (${family.engNm})|"></option>
+                                                    <option th:value="${family.id}" th:text="|${family.korNm} (${family.engNm})|" th:if="${family.id} != ${seed.family.id}"></option>
+                                                    <option th:value="${family.id}" th:text="|${family.korNm} (${family.engNm})|" th:if="${family.id} == ${seed.family.id}" selected></option>
                                                 </span>
                                             </select>
                                         </div>
@@ -104,32 +105,34 @@
                                             <label for="generic">속명</label>
                                             <select id="generic" name="generic" class="select-box">
                                                 <span th:each="generic:${generics}">
-                                                    <option th:value="${generic.id}" th:text="|${generic.korNm} (${generic.engNm})|"></option>
+                                                    <option th:value="${generic.id}" th:text="|${generic.korNm} (${generic.engNm})|" th:if="${generic.id} != ${seed.generic.id}"></option>
+                                                    <option th:value="${generic.id}" th:text="|${generic.korNm} (${generic.engNm})|" th:if="${generic.id} == ${seed.generic.id}" selected></option>
                                                 </span>
                                             </select>
                                         </div>
                                         <div class="seed-add-div">
                                             <label for="date">채집날짜</label>
-                                            <input type="date" id="date" name="date">
+                                            <input type="date" id="date" name="date" th:value="${seed.date}" th:field="${seed.date}">
                                         </div>
                                         <div class="seed-add-div">
                                             <label for="place">채집장소</label>
-                                            <input type="text" id="place" name="place" placeholder="채집장소를 입력하세요">
+                                            <input type="text" id="place" name="place" th:value="${seed.place}" placeholder="채집장소를 입력하세요">
                                         </div>
                                         <div class="seed-add-div">
                                             <label for="length">종자길이</label>
-                                            <input type="number" step="0.01" id="length" name="length" placeholder="종자길이를 입력하세요">
+                                            <input type="number" step="0.01" id="length" name="length" th:value="${seed.length}" placeholder="종자길이를 입력하세요">
                                         </div>
                                         <div class="seed-add-div">
                                             <label for="width">종자너비</label>
-                                            <input type="number" step="0.01" id="width" name="width" placeholder="종자너비를 입력하세요">
+                                            <input type="number" step="0.01" id="width" name="width" th:value="${seed.width}" placeholder="종자너비를 입력하세요">
                                         </div>
                                         <div class="seed-add-div">
                                             <label for="note">비고</label>
-                                            <input type="text" id="note" name="note" placeholder="비고를 입력하세요">
+                                            <input type="text" id="note" name="note" th:value="${seed.note}" placeholder="비고를 입력하세요">
                                         </div>
                                     </div>
                                     <div class="seed-add-btn-box">
+                                        <input type="hidden" id="seedId" name="seedId" th:value="${seed.id}">
                                         <button type="submit" class="save-btn">저장</button>
                                         <a class="cancel-btn" th:href="@{/seeds/list}">취소</a>
                                     </div>
