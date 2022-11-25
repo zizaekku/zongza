@@ -11826,4 +11826,87 @@ login-font {
 
 .dropdown:hover .dropdown-content {
   display: block;
+
+.seed-add-btn {
+  color:#565050;
+  text-decoration: none;
+  border-radius: 5px;
+  padding:3px 5px;
+  background: #DBDBDC;
+  float:right;
+}
+
+.seed-add-btn:hover {
+  color:#565050;
+}
+
+.seed-add-div {
+  margin:20px 10px;
+  color:#545454;
+}
+
+.seed-add-div label {
+  width:100px;
+  text-align: right;
+  padding-right:20px;
+}
+
+.seed-add-div input {
+  width:300px;
+  height:36px;
+  border-radius: 8px;
+  border: 1px solid #DBDBDC;
+  padding-left: 10px;
+}
+
+.seed-add-div input:focus {
+  outline: 1px solid #DBDBDC;
+  box-shadow: 1px 1px 15px #DBDBDC;
+}
+
+.seed-add-btn-box {
+  display:block;
+  text-align: center;
+}
+
+.save-btn {
+  background-color:#3B50DF;
+  color:white;
+  border:none;
+  border-radius:12px;
+  padding:5px;
+  width:100px;
+  display: inline-block;
+}
+
+a[class="save-btn"] {
+  text-decoration: none;
+}
+
+a[class="save-btn"]:hover {
+  color:white;
+}
+
+.cancel-btn {
+  background-color:#EEEEEE;
+  border:none;
+  border-radius:12px;
+  padding:5px;
+  width:100px;
+  display: inline-block;
+  text-align: center;
+  color:black;
+  text-decoration: none;
+}
+
+.cancel-btn:hover {
+  color:black;
+}
+
+.select-box {
+  width:300px;
+  height:36px;
+  border-radius: 8px;
+  border: 1px solid #DBDBDC;
+  padding-left: 6px;
 }
