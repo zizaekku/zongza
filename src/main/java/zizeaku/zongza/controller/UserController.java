@@ -1,7 +1,9 @@
 package zizeaku.zongza.controller;
 
-import zizeaku.zongza.domain.User;
 import zizeaku.zongza.service.UserService;
+import zizeaku.zongza.domain.entity.UserEntity;
+import zizeaku.zongza.dto.UserDto;
+import zizeaku.zongza.repository.MailDto;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,68 +14,59 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.RequiredArgsConstructor;
 
-
 @RequiredArgsConstructor
 @Controller
 @RequestMapping(value = "/users")
 public class UserController {
 
     private final UserService userService;
-    private final Logger logger = LoggerFactory.getLogger("LoggerController 의 로그");
+    private final Logger logger = LoggerFactory.getLogger("UserController 의 로그");
 
-    @GetMapping("/signup")
-    public String signUp() {
+    // 회원가입 페이지
+    @GetMapping("signup")
+    public String dispSignup() {
+        logger.info("GET 회원가입 페이지!");
         return "signup";
     }
 
-    /** POST 회원가입
-     * @param userForm - email
-     * @param userForm - password
-     * @return home.html
-     */
-    @PostMapping("/signup")
-    public String userLogin(User userForm) {
-        User user = new User();
-        user.setEmail(userForm.getEmail());
-        user.setPassword(userForm.getPassword());
-        user.setName(userForm.getName());
-        System.out.println("이메일 비밀번호 가챠!!!");
-        userService.save(user);
+    // 회원가입 처리
+    @PostMapping("signup")
+    public String execSignup(UserDto userDto) {
+        userService.joinUser(userDto);
+        logger.info("POST 회원가입!");
         return "redirect:/";
     }
 
-    /** GET 로그인 화면
-     * @return login.html
-     */
-    @GetMapping("/login")
-    public String getLogin() {
-        logger.info("GET login!");
+    @GetMapping("password")
+    public String password() {
+        logger.info("GET 비밀번호 찾기!");
+        return "password";
+    }
+
+    @PostMapping("password")
+    public String sendTempPassword(String email) {
+        UserEntity result = userService.getUserByEmail(email);
+        // result가 null이라면 오류 페이지로 보내버리기
+        if (result == null) {
+            logger.error("POST 비밀번호 변경 실패!");
+            return "404";
+        }
+        MailDto dto = userService.createMailAndChangePassword(result);
+        userService.mailSend(dto);
+        logger.info("POST 비밀번호 변경 완료!");
         return "login";
     }
 
-
-    /** POST 로그인
-     * @param userForm
-     * @return ok -> 홈 / nope -> 404
-     */
-    @PostMapping("/login")
-    public String postLogin(User userForm) {
-        logger.info("POST login!");
-        Boolean resultUser = userService.login(userForm);
-        if (resultUser) {
-            return "redirect:/";
-        } else {
-            return "404";
-        }
-    }
-
-    @GetMapping("/password")
-    public String password() {
-        return "password";
+    // 내 정보 페이지
+    @GetMapping("info")
+    public String dispMyInfo() {
+        logger.info("GET myinfo!");
+        return "myinfo";
     }
 
     @GetMapping("/tables")
     public String tables() {
         return "tables";
     }
+
 }

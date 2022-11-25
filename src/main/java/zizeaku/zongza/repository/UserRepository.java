@@ -1,16 +1,17 @@
 package zizeaku.zongza.repository;
 
-import java.util.List;
-
+import zizeaku.zongza.domain.entity.UserEntity;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import zizeaku.zongza.domain.User;
-
 @Repository
-public interface UserRepository {
-    void save(User user);
-    User update(User user);
-    List<User> findByEmail(String email);
-    User findById(Long id);
-    List<User> findAll();
+public interface UserRepository extends CrudRepository<UserEntity, Long> {
+    UserEntity findByEmail(String email);
+
+    // @Modifying
+    // @Query("UPDATE users SET password = :password where id = :id")
+    // void updatePassword(Long id, String password);
+
 }

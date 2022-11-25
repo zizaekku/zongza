@@ -76,7 +76,7 @@
 }
 
 @font-face {
-  font-family: 'NanumSquare_acL';
+  font-family: 'NanumSquare_acEB';
   src: url('../fonts/NanumSquare_acEB.ttf') format('truetype');
 }
 
@@ -86,7 +86,7 @@
 }
 
 @font-face {
-  font-family: 'NanumSquare_acL';
+  font-family: 'NanumSquare_acR';
   src: url('../fonts/NanumSquare_acR.ttf') format('truetype');
 }
 
@@ -3075,8 +3075,8 @@ textarea.form-control-lg {
 
 .btn-primary {
   color: #fff;
-  background-color: #0d6efd;
-  border-color: #0d6efd;
+  background-color: #3B4FDE;
+  border-color: #3B4FDE;
 }
 .btn-primary:hover {
   color: #fff;
@@ -3111,7 +3111,7 @@ textarea.form-control-lg {
 }
 .btn-secondary:hover {
   color: #484848;
-  background-color: #fff;
+  background-color: #EAEAEA;
   border-color: #565e64;
 }
 .btn-check:focus + .btn-secondary, .btn-secondary:focus {
@@ -11740,11 +11740,11 @@ body {
 }
 
 /* Custom CSS */
-.login-backgr ound {
+.login-background {
   background-image: url("../img/login-background.png");
   background-position: center;
   background-repeat: no-repeat;
-
+  background-size: cover;
 }
 
 .login-header {
@@ -11759,6 +11759,10 @@ body {
   font-family: 'NanumSquare_acB';
 }
 
+font-size-36 {
+  font-size: 36px;;
+}
+
 .width-100 {
   width: 100%;
 }
@@ -11767,6 +11771,61 @@ body {
   height: 80px;
   background-image: url("../img/header.png");
 }
+
+.white_content {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.8);
+  opacity:0;
+  -webkit-transition: opacity 400ms ease-in;
+  -moz-transition: opacity 400ms ease-in;
+  transition: opacity 400ms ease-in;
+  pointer-events: none;
+}
+
+.white_content:target {
+  opacity:1;
+  pointer-events: auto;
+}
+
+.white_content > div {
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  width: 50%;
+  height: 50%;
+  padding: 16px;
+  border: 2px solid;
+  background-color: white;
+  overflow: auto;	
+}
+
+login-font {
+  font-family: 'NanumSquare_acL';
+  color: #838181;
+  font-size: 14px;
+}
+
+.dropdown{
+  position : relative;
+  display : inline-block;
+}
+
+.dropdown-content{
+  display : none;
+  position : absolute;
+  z-index : 1;
+}
+
+.dropdown-content a{
+  display : block;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
 
 .seed-add-btn {
   color:#565050;
