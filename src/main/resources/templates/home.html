@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -19,9 +19,19 @@
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
-            <div class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+            <div sec:authorize="!isAuthenticated()" class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0 login-font" style="padding-right: 20px;">
                 <div class="input-group" th:onclick="|location.href='@{/users/login}'|">
-                    <img src="img/user.png" style="width: 20px; height: 21.2px; margin-right: 10px;"><span style="color: #838181; font-size: 14px;" class="login-font">로그인 (Log In)</span>
+                    <img src="img/user.png" style="width: 20px; height: 21.2px; margin-right: 10px;">로그인 (Log In)
+                </div>
+            </div>
+            <div sec:authorize="isAuthenticated()" class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0 login-font">
+                <div class="dropdown">
+                    <img src="img/user.png" style="width: 20px; height: 21.2px; margin-right: 10px;">
+                    <span sec:authentication="name" style="padding-right: 5px;"></span>님
+                    <div class="dropdown-content">
+                        <a href="#">내 계정</a>
+                        <a th:href="@{/logout}">로그아웃</a>
+                      </div>
                 </div>
             </div>
         </nav>
@@ -31,8 +41,8 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <a class="nav-link collapsed" th:href="@{#}" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages" style="padding-top: 3rem;">
-                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                Pages
+                                <div class="sb-nav-link-icon"><img src="img/home.png"></div>
+                                홈 (All Seeds)
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
@@ -62,7 +72,6 @@
                 <main>
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Dashboard</h1>
-                        <h1 sec:authentication="name"></h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Dashboard</li>
                         </ol>
