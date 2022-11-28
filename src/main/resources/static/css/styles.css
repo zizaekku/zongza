@@ -11826,6 +11826,7 @@ login-font {
 
 .dropdown:hover .dropdown-content {
   display: block;
+}
 
 .seed-add-btn {
   color:#565050;
