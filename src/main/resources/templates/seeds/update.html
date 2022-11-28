@@ -130,6 +130,7 @@
                                             <label for="note">비고</label>
                                             <input type="text" id="note" name="note" th:value="${seed.note}" placeholder="비고를 입력하세요">
                                         </div>
+                                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                                     </div>
                                     <div class="seed-add-btn-box">
                                         <input type="hidden" id="seedId" name="seedId" th:value="${seed.id}">

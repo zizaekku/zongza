@@ -22,6 +22,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -31,7 +32,13 @@ import lombok.RequiredArgsConstructor;
 public class SecurityConfig {
 
     @Bean
-    public WebSecurityCustomizer configure() {
+    public WebSecurityCustomizer configure(HttpSecurity http) throws Exception{
+        http.headers()
+        	//중략
+            .and()
+                .csrf()
+                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+            .and();
         return (web) -> web.ignoring().mvcMatchers(
                 "/swagger-ui/**"
         );
